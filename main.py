@@ -9,10 +9,10 @@ led = Pin(2, Pin.OUT)
 
 def blink(time, count):
 
-
 while True:
     if distance.read()<500:
         led.value(1)
     else:
         led.value(0)
     time.sleep_ms(200)
+
