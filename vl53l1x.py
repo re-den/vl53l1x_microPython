@@ -108,6 +108,11 @@ class VL53L1X:
         # measurement is started; assumes MM1 and MM2 are disabled
         self.writeReg16Bit(0x001E, self.readReg16Bit(0x0022) * 4)
         machine.lightsleep(200)
+        
+    def SetROI(self, x, y, opticalCenter):
+        return self.i2c.writeto_mem(self.address, 0x80, b'0x00') # write 2 bytes to slave 'self.address', slave memory 0x80
+    def GetROI(self):
+        return self.i2c.readfrom_mem(self.address, 0x80, 2) # read 2 bytes from slave 'self.address', slave memory 0x80
 
     def writeReg(self, reg, value):
         return self.i2c.writeto_mem(self.address, reg, bytes([value]), addrsize=16)
