@@ -112,6 +112,7 @@ class VL53L1X:
     def SetROI(self, x, y, opticalCenter):
         return self.i2c.writeto_mem(self.address, 0x80, b'0x00') # write 2 bytes to slave 'self.address', slave memory 0x80
     def GetROI(self):
+        print('GetROI')
         return self.i2c.readfrom_mem(self.address, 0x80, 2) # read 2 bytes from slave 'self.address', slave memory 0x80
 
     def writeReg(self, reg, value):
@@ -166,3 +167,4 @@ class VL53L1X:
             #else:
                 #status = "OK"
         return final_crosstalk_corrected_range_mm_sd0
+
